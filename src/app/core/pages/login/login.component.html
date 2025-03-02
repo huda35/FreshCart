@@ -1,0 +1,74 @@
+
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="max-w-md mx-auto m-20">
+    @if(apiError)
+{
+<div class="flex p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+    role="alert">
+    {{apiError}}
+</div>
+}
+    <div class="relative z-0 w-full mb-5 group">
+        @let emailControl = loginForm.get("email");
+        <input formControlName="email" type="email" name="floating_email" id="floating_name" class="input-style peer"
+            placeholder=" " required />
+        <label for="floating_name"
+            class="label-style peer-focus:font-medium peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User
+            Email</label>
+            @if(emailControl?.errors && emailControl?.touched)
+            {
+            <div class="flex p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert">
+                <ul class="mt-1.5 list-disc list-inside">
+                    @if(emailControl?.getError('required')){
+                        <li>Email is required</li>
+                    }
+                    @else if(emailControl?.getError('email')){
+                        <li>Invalid Email</li>
+                    }
+                </ul>
+            </div>
+            }
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        @let passwordControl = loginForm.get("password");
+        <input formControlName="password" [type]="!toggleInput ? 'password' : 'text' " name="floating_password" id="floating_password"
+            class="input-style peer" placeholder=" " required />
+        <label for="floating_password"
+            class="label-style peer-focus:font-medium peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User
+            Password</label>
+            <span (click)="togglePassword()" class="absolute top-[10%] right-0 cursor-pointer">
+                @if(toggleInput){
+                    <i class="fa-solid fa-eye-slash"></i>
+                }@else{
+                    <i class="fa fa-eye"></i>
+                }
+            </span>
+            
+            @if(passwordControl?.errors && passwordControl?.touched)
+            {
+            <div class="flex p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert">
+                <ul class="mt-1.5 list-disc list-inside">
+                    @if(passwordControl?.getError('required')){
+                        <li>Password is required</li>
+                    }
+                    @else if(passwordControl?.getError('pattern')){
+                        <li>Invalid Pattern</li>
+                    }
+                </ul>
+            </div>
+            }
+    </div>  
+    <button type="submit" [disabled]="isCallingApi" class="main-btn">
+        @if (isCallingApi){
+            <i class="fa fa-spin fa-spinner"></i>
+        }
+        @else{
+            Login
+        }
+        
+    </button>
+    <div>
+        <h3 class="fs-5 ms-2 cursor-pointer fw-bold mt-3" (click)="forgetPass()">forget Your Password ?</h3>
+    </div>
+</form>

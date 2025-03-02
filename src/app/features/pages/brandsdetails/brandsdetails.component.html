@@ -1,0 +1,19 @@
+@if(APIError){
+  <h1 class="text-4xl text-main">Failed to load Brand</h1>
+}
+@else{
+  <section class="w-75 mx-auto rounded shadow bg-main-light p-3 m-16">
+    <div class="row g-4 align-items-center">
+      <div class="col-md-6">
+        <img class="w-100" [src]="brandDetails.image" [alt]="brandDetails.name">
+      </div>
+      <div class="col-md-6 m-3">
+        <h2>{{brandDetails.name}}</h2>
+      </div>
+      <div>
+        <p class="text-main m-1">Created at : {{brandDetails.createdAt}}</p>
+        <p class="text-main m-1">Updated at: {{brandDetails.updatedAt}}</p>
+      </div>
+    </div>
+  </section>
+}

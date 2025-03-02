@@ -1,0 +1,21 @@
+
+<div class="m-14">
+    <h1 class="text-main text-4xl font-black text-center">My Wish List</h1>
+    <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-14 m-8 ">
+        @for (item of wishlistItems; track item.id){
+            <div class="p-4 shadow-none transition-shadow duration-300 cursor-pointer 
+            hover:shadow-[0_0_15px_3px] hover:shadow-green-300 rounded-lg overflow-hidden border ">
+                <div class="col-md-2 p-2">
+                    <img class="w-100" [src]="item.imageCover" [alt]="item.description">
+                </div>
+                <div class="col-8 p-2 ">
+                    <h2 class="h4 fw-bold">{{item.title}}</h2>
+                    <h6 class="text-main fw-bold">{{item.price | currency : 'EGP'}}</h6>
+                    <button (click)="addItem(item._id)" 
+                    class="mt-6 bg-main text-white p-2 rounded w-full mx-auto block group-hover:opacity-100 
+                    transition-all duration-500  group-hover:translate-y-[0%]">Add to cart</button> 
+                </div>
+            </div>
+           }
+    </div>
+</div>

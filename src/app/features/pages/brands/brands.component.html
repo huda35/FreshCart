@@ -1,0 +1,12 @@
+<div class="m-8">
+    <h1 class="text-main text-4xl font-black text-center">All Brands</h1>
+    <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-9 m-16">
+        @for (brand of brandsData; track $index){
+           <div role="button" [routerLink]="['/brandsdetails',brand._id]" class="shadow-none transition-shadow duration-300 cursor-pointer 
+           hover:shadow-[0_0_15px_3px] hover:shadow-green-300 rounded-lg overflow-hidden border">
+               <img class=" w-full"  [src]="brand.image" [alt]="brand.name"> 
+               <h3 class="text-center p-6 ">{{brand.name}}</h3>
+            </div>
+        }
+    </div>
+</div>
